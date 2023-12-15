@@ -110,7 +110,7 @@ public class Main {
     }
 
     private static void editStudent(Scanner scanner, StudentList studentList) {
-        System.out.print("Введите ID студента, которого хотите отредактировать: ");
+        System.out.print("Введите ID студента, которого хотите отредактировать(ID может быть буквенным): ");
         String id = scanner.next();
         Student existingStudent = studentList.getById(id);
 
