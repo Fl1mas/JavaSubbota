@@ -1,5 +1,0 @@
-ID: 1
-First Name: Эдуард
-Last Name: Цыдыпов
-Partonymic Name: Буянтуевич
-Group: 761
