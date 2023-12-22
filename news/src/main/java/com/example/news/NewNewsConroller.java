@@ -5,10 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
@@ -46,14 +44,13 @@ public class NewNewsConroller {
         model.addAttribute("post", res);
         return "newsdetails";
     }
-
     @GetMapping("/news/{id}/edit")
-    public String newsEdit(@PathVariable(value = "id") Long id, Model model) {
+    public ModelAndView newsEdit(@ModelAttribute("id") Long id, Model model) {
         Optional<Post> post = postRepository.findById(id);
         ArrayList<Post> res = new ArrayList<>();
         post.ifPresent(res::add);
         model.addAttribute("post", res);
-        return "news-edit";
+        return new ModelAndView("news-edit");
     }
     @PostMapping("news/{id}/edit")
     public String newsPostUpdate(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model) {

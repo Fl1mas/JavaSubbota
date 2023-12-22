@@ -11,8 +11,8 @@
     <div th:each="el : ${post}" class="alert alert-info mt-2">
         <h1 th:text="${el.title}"></h1>
         <p th:text="${el.full_text}"></p>
-        <a th:href="@{/news/{id}/edit}" class="btn btn-warning">Редактировать</a>
-        <a th:href="@{/news/{id}/remove}" class="btn btn-warning">Удалить</a>
+        <a th:href="@{/news/{id}/edit(id=${id})}" class="btn btn-warning">Редактировать</a>
+        <a th:href="@{/news/{id}/remove(id=${id})}" class="btn btn-warning">Удалить</a>
     </div>
 </div>
 <div th:insert="blocks/footer :: footer"></div>
