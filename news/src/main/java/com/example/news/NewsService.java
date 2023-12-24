@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class NewsService {
         @Autowired
-        private PostRepository postRepository;
+        private static PostRepository postRepository;
 
         public Iterable<Post> getAllNews() {
             return postRepository.findAll();
@@ -26,6 +26,9 @@ public class NewsService {
         public void deleteNewsById(Long id) {
             postRepository.deleteById(id);
         }
+    public  Iterable<Post> searchByTitle(String title) {
+        return postRepository.findByTitleContaining(title);
+    }
 
 }
 

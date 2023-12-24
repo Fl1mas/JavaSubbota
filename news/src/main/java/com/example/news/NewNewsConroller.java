@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.text.html.Option;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
 
 @Controller
 public class NewNewsConroller {
@@ -29,11 +31,17 @@ public class NewNewsConroller {
         return "news-add";
     }
 
+    @PostMapping("/search")
+    public String search(@RequestParam("title") String title, Model model) {
+        Iterable<Post> posts = postRepository.findByTitleContaining(title);
+        model.addAttribute("posts", posts);
+        return "blog-details";
+    }
     @PostMapping("news/add")
     public String newsPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model) {
         Post post = new Post(title, anons, full_text);
         postRepository.save(post);
-        return "redirect:/news-main";
+        return "redirect:/news";
     }
 
     @GetMapping("/news/{id}")
@@ -66,5 +74,6 @@ public class NewNewsConroller {
         Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);
         return "redirect:/news";
+
     }
 }

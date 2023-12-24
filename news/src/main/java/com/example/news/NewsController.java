@@ -35,15 +35,12 @@ import org.springframework.web.bind.annotation.*;
             return newsService.getNewsById(id);
         }
 
+
         @PutMapping("/update/{id}")
         public Post updateNews(@PathVariable Long id, @RequestBody Post news) {
             news.setId(id);
             return newsService.saveNews(news);
         }
 
-        @DeleteMapping("/delete/{id}")
-        public void deleteNews(@PathVariable Long id) {
-            newsService.deleteNewsById(id);
-        }
     }
 
